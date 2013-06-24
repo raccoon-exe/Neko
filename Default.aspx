@@ -24,6 +24,6 @@
     <asp:TextBox ID="titleSearchBox" runat="server"></asp:TextBox>
     <asp:Button ID="searchButton" runat="server" Text="Search" onClick="doSearch"/>
 
-    <asp:GridView ID="documentGrid" runat="server" OnSelectedIndexChanged="gridView_getRecord" OnPageIndexChanging="gridView_PageIndexChanging" OnSorting="gridView_Sorting" AutoGenerateSelectButton="True" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="false"></asp:GridView>
+    <asp:GridView ID="recordGrid" runat="server" OnSelectedIndexChanged="gridView_getRecord" OnPageIndexChanging="gridView_PageIndexChanging" OnSorting="gridView_Sorting" AutoGenerateSelectButton="True" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="false"></asp:GridView>
     <asp:SqlDataSource runat="server" ID="MmsyDataSource" ConnectionString='<%$ ConnectionStrings:MmsydataConnectionString %>' ProviderName='<%$ ConnectionStrings:MmsydataConnectionString.ProviderName %>' SelectCommand="SELECT [objtype] FROM [Type]"></asp:SqlDataSource>
 </asp:Content>

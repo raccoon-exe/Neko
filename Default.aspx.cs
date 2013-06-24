@@ -33,7 +33,7 @@ public partial class _Default : Page {
             typesDropDown.DataValueField = "objtype";
 
             // Set gridview primary key
-            documentGrid.DataKeyNames = keyNames;
+            recordGrid.DataKeyNames = keyNames;
 
             // Set gridview columns
             for (int i = 0; i < keyNames.Length; i++) {
@@ -41,22 +41,22 @@ public partial class _Default : Page {
                 tempField.HeaderText = keyNames[i];
                 tempField.DataField = keyNames[i];
                 tempField.Visible = false;
-                documentGrid.Columns.Add(tempField);
+                recordGrid.Columns.Add(tempField);
             }
             
             for (int i = 0; i < columnNames.Length; i++) {
                 BoundField tempField = new BoundField();
                 tempField.HeaderText = columnNames[i];
                 tempField.DataField = columnNames[i];
-                documentGrid.Columns.Add(tempField);
+                recordGrid.Columns.Add(tempField);
             }
         }
     }
     protected void doSearch(object sender, EventArgs e) {
         bool addAnd = false;
        
-        if (typesDropDown.SelectedIndex != 0) {
-            _query += " WHERE (MIMSY1.objtype = '" + typesDropDown.SelectedItem.Value + "')";
+        if (typesDropDown.SelectedIndex > 1) {
+            _query += " WHERE (MIMSY1.objtype LIKE '%" + typesDropDown.SelectedItem.Value + "%')";
             addAnd = true;
         }
 
@@ -73,12 +73,17 @@ public partial class _Default : Page {
 
         _mimsyRecordSet = new System.Data.DataSet();
         _dCommand = new OleDbCommand(_query, _dConnection);
-        _dConnection.Open();
         _dAdapter = new OleDbDataAdapter(_dCommand);
-        _dAdapter.Fill(_mimsyRecordSet);
+
+        _dConnection.Open();
+            _dAdapter.Fill(_mimsyRecordSet);
         _dConnection.Close();
-        documentGrid.DataSource = _mimsyRecordSet;
-        documentGrid.DataBind();
+
+        recordGrid.DataSource = _mimsyRecordSet;
+        recordGrid.DataBind();
+
+        // Reset query for next search
+        _query = "SELECT MIMSY1.counter, MIMSY1.Sorts, MIMSY1.objname AS [Title], MIMSY1.description AS [Description], MIMSY1.objtype AS [Object Type], MIMSY1.Key1 FROM MIMSY1";
     }
 
     /* Grid view event handlers */
@@ -102,29 +107,28 @@ public partial class _Default : Page {
 
     protected void gridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
-        documentGrid.PageIndex = e.NewPageIndex;
-        documentGrid.DataSource = _mimsyRecordSet;
-        documentGrid.DataBind();
+        recordGrid.PageIndex = e.NewPageIndex;
+        recordGrid.DataSource = _mimsyRecordSet;
+        recordGrid.DataBind();
     }
 
     protected void gridView_Sorting(object sender, GridViewSortEventArgs e)
     {
-        DataTable dataTable = documentGrid.DataSource as DataTable;
+        DataTable dataTable = recordGrid.DataSource as DataTable;
 
         if (dataTable != null)
         {
             DataView dataView = new DataView(dataTable);
             dataView.Sort = e.SortExpression + " " + ConvertSortDirectionToSql(e.SortDirection);
 
-            documentGrid.DataSource = dataView;
-            documentGrid.DataBind();
+            recordGrid.DataSource = dataView;
+            recordGrid.DataBind();
         }
     }
 
     protected void gridView_getRecord(object sender, EventArgs e)
     {
-        GridViewRow row = documentGrid.SelectedRow;
-        string docId = documentGrid.DataKeys[documentGrid.SelectedIndex].Value.ToString();
-        
+        string docId = recordGrid.DataKeys[recordGrid.SelectedIndex].Value.ToString();
+        Response.Write("<script type='text/javascript'>window.open('Results.aspx?q=" + docId + "', '_blank');</script>"); 
     }
 }
