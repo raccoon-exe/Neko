@@ -2,33 +2,30 @@
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <hgroup class="title">
-        <h1><%: Title %>.</h1>
-        <h2>Your app description page.</h2>
+        <h1><%: Title %></h1>
+        <h2>This App</h2>
     </hgroup>
 
     <article>
+        <h1>
+            Neko is...
+        </h1>
         <p>        
-            Use this area to provide additional information.
+            an application which provides a web interface to a Microsoft Access database.
         </p>
 
         <p>        
-            Use this area to provide additional information.
-        </p>
-
-        <p>        
-            Use this area to provide additional information.
+            Written in ASP.NET and C#.
         </p>
     </article>
 
     <aside>
-        <h3>Aside Title</h3>
+        <h3>Source Code</h3>
         <p>        
-            Use this area to provide additional information.
+            Fork this project on Github!
         </p>
         <ul>
-            <li><a runat="server" href="~/">Home</a></li>
-            <li><a runat="server" href="~/About">About</a></li>
-            <li><a runat="server" href="~/Contact">Contact</a></li>
+            <li><a runat="server" href="https://github.com/atomvan/Neko">Source Code</a></li>
         </ul>
     </aside>
 </asp:Content>

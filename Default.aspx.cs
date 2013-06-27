@@ -18,9 +18,9 @@ public partial class _Default : Page {
     protected void Page_Load(object sender, EventArgs e) {
         if (!Page.IsPostBack) {
             // Query result columns.  These must map to selected columns (MIMSY1.foo) or their aliases (MIMSY1.foo AS [Bar])
-            string[] columnNames = {"Sorts", "Title", "Description", "Object Type", "Key1"};
+            string[] columnNames = { "Sorts", "Title", "Description", "Object Type", "Key1" };
             // Record keys.  These must also map to selected columns or aliases.
-            string[] keyNames = {"counter"};
+            string[] keyNames = { "counter" };
 
             // Must be inital load -- Setup default page state.            
             ListItem hide = new ListItem("------------------------", "NULL");
@@ -36,20 +36,26 @@ public partial class _Default : Page {
             recordGrid.DataKeyNames = keyNames;
 
             // Set gridview columns
-            for (int i = 0; i < keyNames.Length; i++) {
+            for (int i = 0; i < keyNames.Length; i++)
+            {
                 BoundField tempField = new BoundField();
                 tempField.HeaderText = keyNames[i];
                 tempField.DataField = keyNames[i];
                 tempField.Visible = false;
                 recordGrid.Columns.Add(tempField);
             }
-            
-            for (int i = 0; i < columnNames.Length; i++) {
+
+            for (int i = 0; i < columnNames.Length; i++)
+            {
                 BoundField tempField = new BoundField();
                 tempField.HeaderText = columnNames[i];
                 tempField.DataField = columnNames[i];
                 recordGrid.Columns.Add(tempField);
             }
+        }
+        else {
+            // Page reload.  Any persistent settings go here.
+            typesDropDown.Items[1].Attributes.Add("disabled", "disabled");
         }
     }
     protected void doSearch(object sender, EventArgs e) {

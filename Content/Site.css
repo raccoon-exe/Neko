@@ -562,6 +562,11 @@ tr.pager td {
     padding: 0 0.25em 0 0;
 }
 
+/* Misc */
+.topbar {
+    padding-bottom: 3.5em;
+}
+
 
 /********************
 *   Mobile Styles   *

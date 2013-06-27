@@ -3,20 +3,23 @@
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <hgroup class="title">
         <h1><%: Title %>.</h1>
-        <h2>Your contact page.</h2>
+        <h2>Tom Navarro</h2>
     </hgroup>
 
     <section class="contact">
         <header>
-            <h3>Phone:</h3>
+            <h3>Web:</h3>
         </header>
         <p>
-            <span class="label">Main:</span>
-            <span>425.555.0100</span>
+            <span><a href="http://nifelhe.im">http://nifelhe.im</a></span>
         </p>
         <p>
-            <span class="label">After Hours:</span>
-            <span>425.555.0199</span>
+            <span class="label">Portfolio:</span>
+            <span><a href="http://nifelhe.im/portfolio.html">http://nifelhe.im/portfolio.html</a></span>
+        </p>
+        <p>
+            <span class="label">Resume:</span>
+            <span><a href="http://nifelhe.im/resume.html">http://nifelhe.im/resume.html</a></span>
         </p>
     </section>
 
@@ -25,26 +28,25 @@
             <h3>Email:</h3>
         </header>
         <p>
-            <span class="label">Support:</span>
-            <span><a href="mailto:Support@example.com">Support@example.com</a></span>
-        </p>
-        <p>
-            <span class="label">Marketing:</span>
-            <span><a href="mailto:Marketing@example.com">Marketing@example.com</a></span>
-        </p>
-        <p>
-            <span class="label">General:</span>
-            <span><a href="mailto:General@example.com">General@example.com</a></span>
+            <span><a href="mailto:tom@nifelhe.im">tom@nifelhe.im</a></span>
         </p>
     </section>
 
     <section class="contact">
         <header>
-            <h3>Address:</h3>
+            <h3>Social:</h3>
         </header>
         <p>
-            One Microsoft Way<br />
-            Redmond, WA 98052-6399
+            <span class="label">Github:</span>
+            <span><a href="https://github.com/atomvan">Atomvan</a></span>
+        </p>
+        <p>
+            <span class="label">Linkedin:</span>
+            <span><a href="http://lnkd.in/TtKRfG">Tom Navarro</a></span>
+        </p>
+        <p>
+            <span class="label">Google+:</span>
+            <span><a href="https://plus.google.com/u/0/104269842067547605287">Tom Navarro</a></span>
         </p>
     </section>
 </asp:Content>

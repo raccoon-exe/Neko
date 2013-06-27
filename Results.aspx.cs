@@ -40,5 +40,9 @@ public partial class Results : Page
         documentGrid.DataSource = documentData;
         documentGrid.DataBind();
 
+        if (documentGrid.Rows.Count < 1)
+        {
+            noRecordMessage.Style.Clear();
+        }
     }
 }
